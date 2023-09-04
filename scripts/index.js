@@ -19,3 +19,15 @@ issueCertificate = async () => {
   console.log("Trx: ", trxReceipt);
   alert(`Certificate is issued for ${certificateID}!`);
 };
+
+getCertificateDetails = async () => {
+  let certificateID = document.getElementById("certificateID").value;
+  console.log(certificateID);
+  let result = await MyContract.methods.Certificates(certificateID).call();
+  sessionStorage.setItem("certificateID", certificateID);
+  sessionStorage.setItem("candidateName", result.name);
+  sessionStorage.setItem("courseName", result.course);
+  sessionStorage.setItem("grade", result.grade);
+  sessionStorage.setItem("date", result.date);
+  window.location.href = "viewCertificate.html";
+};
