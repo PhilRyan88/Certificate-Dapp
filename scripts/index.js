@@ -1,83 +1,11 @@
+import abi from "./Cert.json";
 let web3;
 let contractInstance;
 window.onload = () => {
   web3 = new Web3(ethereum);
-  let abi = [
-    {
-      inputs: [],
-      stateMutability: "nonpayable",
-      type: "constructor",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "certificates",
-      outputs: [
-        {
-          internalType: "string",
-          name: "name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "course",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "date",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "Grade",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "_id",
-          type: "uint256",
-        },
-        {
-          internalType: "string",
-          name: "_name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_course",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_date",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_Grade",
-          type: "string",
-        },
-      ],
-      name: "issue",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
-  let contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
-  let contractInstance = new web3.eth.Contract(abi, contractAddress);
+  let ContractABI = abi;
+  let contractAddress = "0xc98510408A45805e3d5A9Efb29e851cc61D54751";
+  let contractInstance = new web3.eth.Contract(ContractABI, contractAddress);
 };
 issueCertificate = async () => {
   let certificateID = document.getElementById("certificateID").value;
