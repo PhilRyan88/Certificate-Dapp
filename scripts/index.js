@@ -1,4 +1,10 @@
 import abi from "./Cert.json";
+
+connectToMetaMask = async () => {
+  let accounts = await ethereum.request({ method: "eth_requestAccounts" });
+  alert(`Connected to ${accounts[0]}!`);
+};
+
 let web3;
 let contractInstance;
 window.onload = () => {
