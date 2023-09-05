@@ -81,7 +81,7 @@ window.onload = async () => {
       type: "function",
     },
   ];
-  const contractAddress = "0x8Dcd577D68C9851bda157Eb7f26d5ab2D05834f1";
+  const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
   web3 = new Web3(ethereum);
   MyContract = new web3.eth.Contract(abi, contractAddress);
 };
