@@ -103,11 +103,21 @@ issueCertificate = async () => {
 getCertificateDetails = async () => {
   let certificateID = document.getElementById("certificateID").value;
   console.log(certificateID);
-  let result = await MyContract.methods.Certificates(certificateID).call();
-  sessionStorage.setItem("certificateID", certificateID);
-  sessionStorage.setItem("candidateName", result.name);
-  sessionStorage.setItem("courseName", result.course);
-  sessionStorage.setItem("grade", result.grade);
-  sessionStorage.setItem("date", result.date);
-  window.location.href = "viewCertificate.html";
+
+  // Assuming you have a contract instance created
+  let myContractInstance = new web3.eth.Contract(abi, contractAddress);
+
+  try {
+    let result = await myContractInstance.methods
+      .Certificates(certificateID)
+      .call();
+    sessionStorage.setItem("certificateID", certificateID);
+    sessionStorage.setItem("candidateName", result.name);
+    sessionStorage.setItem("courseName", result.course);
+    sessionStorage.setItem("grade", result.grade);
+    sessionStorage.setItem("date", result.date);
+    window.location.href = "viewCertificate.html";
+  } catch (error) {
+    console.error(error);
+  }
 };
