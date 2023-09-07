@@ -21,7 +21,7 @@ window.onload = async () => {
           type: "uint256",
         },
       ],
-      name: "certificates",
+      name: "Certificates",
       outputs: [
         {
           internalType: "string",
@@ -35,12 +35,12 @@ window.onload = async () => {
         },
         {
           internalType: "string",
-          name: "date",
+          name: "grade",
           type: "string",
         },
         {
           internalType: "string",
-          name: "Grade",
+          name: "date",
           type: "string",
         },
       ],
@@ -66,12 +66,12 @@ window.onload = async () => {
         },
         {
           internalType: "string",
-          name: "_date",
+          name: "_grade",
           type: "string",
         },
         {
           internalType: "string",
-          name: "_Grade",
+          name: "_date",
           type: "string",
         },
       ],
@@ -101,99 +101,13 @@ issueCertificate = async () => {
 };
 
 getCertificateDetails = async () => {
-  const abi = [
-    {
-      inputs: [],
-      stateMutability: "nonpayable",
-      type: "constructor",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      name: "certificates",
-      outputs: [
-        {
-          internalType: "string",
-          name: "name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "course",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "date",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "Grade",
-          type: "string",
-        },
-      ],
-      stateMutability: "view",
-      type: "function",
-    },
-    {
-      inputs: [
-        {
-          internalType: "uint256",
-          name: "_id",
-          type: "uint256",
-        },
-        {
-          internalType: "string",
-          name: "_name",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_course",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_date",
-          type: "string",
-        },
-        {
-          internalType: "string",
-          name: "_Grade",
-          type: "string",
-        },
-      ],
-      name: "issue",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ];
-  const contractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
-
   let certificateID = document.getElementById("certificateID").value;
   console.log(certificateID);
-
-  // Assuming you have a contract instance created
-  let myContractInstance = new web3.eth.Contract(abi, contractAddress);
-
-  try {
-    let result = await myContractInstance.methods
-      .Certificates(certificateID)
-      .call();
-    sessionStorage.setItem("certificateID", certificateID);
-    sessionStorage.setItem("candidateName", result.name);
-    sessionStorage.setItem("courseName", result.course);
-    sessionStorage.setItem("grade", result.grade);
-    sessionStorage.setItem("date", result.date);
-    window.location.href = "viewCertificate.html";
-  } catch (error) {
-    console.error(error);
-  }
+  let result = await MyContract.methods.Certificates(certificateID).call();
+  sessionStorage.setItem("certificateID", certificateID);
+  sessionStorage.setItem("candidateName", result.name);
+  sessionStorage.setItem("courseName", result.course);
+  sessionStorage.setItem("grade", result.grade);
+  sessionStorage.setItem("date", result.date);
+  window.location.href = "viewCertificate.html";
 };
