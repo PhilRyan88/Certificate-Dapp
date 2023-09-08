@@ -108,6 +108,4 @@ getCertificateDetails = async () => {
   sessionStorage.setItem("candidateName", result.name);
   sessionStorage.setItem("courseName", result.course);
   sessionStorage.setItem("grade", result.grade);
-  sessionStorage.setItem("date", result.date);
-  window.location.href = "viewCertificate.html";
 };
